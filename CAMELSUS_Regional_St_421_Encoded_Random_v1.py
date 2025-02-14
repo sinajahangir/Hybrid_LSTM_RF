@@ -234,7 +234,7 @@ for ii in range(0, 421):
     try:
       df_temp_train.to_csv(save_results+'/'+'LSTM50_%d_Encoded_Train_%d.csv'%(hidden_size,ii),index=None)
       df_temp_test.to_csv(save_results+'/'+'LSTM50_%d_Encoded_Test_%d.csv'%(hidden_size,ii),index=None)
-    except Exception as e:
+    except Exception as e: #If the folder does not exist
       print(e)
       print('Creating Directory')
       os.mkdir(save_results)

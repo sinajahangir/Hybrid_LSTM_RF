@@ -150,14 +150,6 @@ class TimeSeriesDataset(Dataset):
 seq_length = 365 #input lag
 batch_size = 1024
 
-
-columns=df_tr.columns.to_list()
-columns.remove('q')
-columns.remove('basin_id')
-
-
-
-
 # Extract feature column names, excluding 'q' (target variable) and 'basin_id' (identifier)
 columns = df_tr.columns.to_list()
 columns.remove('q')

@@ -11,6 +11,7 @@ import torch
 import pandas as pd
 import torch.nn as nn
 import sys
+import random
 #%%
 
 # Define file paths for training and test datasets
@@ -154,13 +155,7 @@ columns=df_tr.columns.to_list()
 columns.remove('q')
 columns.remove('basin_id')
 
-import random
-seed=int(sys.argv[1])
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)  # For CUDA
-np.random.seed(seed)  # For NumPy
-random.seed(seed)  # For Python's random module
-torch.backends.cudnn.deterministic = True  # Ensures deterministic behavior
+
 
 
 # Extract feature column names, excluding 'q' (target variable) and 'basin_id' (identifier)

@@ -7,7 +7,7 @@ Email:mohammadsina.jahangir@gmail.com
     ## The LSTM of the hybrid model was trained on 50 random catchments
     ## Fine-tuning was done by training the tree on the training portion
     
-#important note: It seems it is not possible to load the DF models on HPC.
+#important note: It seems it is not possible to load the saved DF models on some clusters.
     ##Google Colab can be an alternative options.
     ##We have to retrain the hybrid model and save the forecasts
 
@@ -134,7 +134,7 @@ for jj in range(0, 1):
 
     # Define LSTM-based encoder model
     inputs = tf.keras.layers.Input(shape=(365, 9))
-    x = tf.keras.layers.LSTM(64, return_sequences=False)(inputs)  # LSTM layer with 64 units
+    x = tf.keras.layers.LSTM(64, return_sequences=False)(inputs)  # LSTM layer with 64 hidden units
     xx = tf.keras.layers.Dropout(0.2)(x)  # Apply dropout regularization
     outputs = tf.keras.layers.Dense(1, activation='linear')(xx)  # Linear output layer
 

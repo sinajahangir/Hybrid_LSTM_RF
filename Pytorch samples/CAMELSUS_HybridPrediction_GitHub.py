@@ -127,6 +127,7 @@ columns = df_tr.columns.to_list()
 columns.remove('q')
 columns.remove('basin_id')
 
+#re-transform to the original space
 def i_normalize(x_tr,mean_,sd_):
   """
   Written by:SJ
@@ -189,32 +190,19 @@ for ii in range(0, 421):
     
     # Initialize DataFrame to store results if it's the first basin
     if ii == 0:
-        df_metric = pd.DataFrame(columns=['obs', 'pred', 'basin_id'])
-        df_acc = pd.DataFrame(columns=['basin_id'])
-        
-        # Store basin_id and save the initial DataFrames
-        df_acc.loc[0, 'basin_id'] = ii
-        df_acc.to_csv(f'LSTM421_rf_st_random_{seed}.csv', index=False)
+        df_save = pd.DataFrame(columns=['obs', 'pred', 'basin_id'])
         
         # Store observed and predicted values
-        df_metric['obs'] = y_obs.ravel()
-        df_metric['pred'] = y_pred.ravel()
-        df_metric['basin_id'] = ii
-        df_metric.to_csv(f'LSTM421_rf_Pred_random_{seed}.csv', index=False)
-    
+        df_save['obs'] = y_obs.ravel()
+        df_save['pred'] = y_pred.ravel()
+        df_save['basin_id'] = ii
+        df_save.to_csv(f'LSTM421_rf_Pred_random_{seed}.csv', index=False)
     else:
         # For subsequent basins, read existing files and append results
-        df_metric = pd.read_csv(f'LSTM421_rf_Pred_random_{seed}.csv')
-        df_metric_temp = pd.DataFrame(columns=['obs', 'pred', 'basin_id'])
-        df_metric_temp['obs'] = y_obs.ravel()
-        df_metric_temp['pred'] = y_pred.ravel()
-        df_metric_temp['basin_id'] = ii
-        df_metric = pd.concat([df_metric, df_metric_temp], axis=0)
-        df_metric.to_csv(f'LSTM421_rf_Pred_random_{seed}.csv', index=False)
-        
-        # Append basin_id to the accuracy file
-        df_acc = pd.read_csv(f'LSTM421_rf_st_random_{seed}.csv')
-        df_acc_temp = pd.DataFrame(columns=['basin_id'])
-        df_acc_temp.loc[0, 'basin_id'] = ii
-        df_acc = pd.concat([df_acc, df_acc_temp], axis=0)
-        df_acc.to_csv(f'LSTM421_rf_st_random_{seed}.csv', index=False)
+        df_save = pd.read_csv(f'LSTM421_rf_Pred_random_{seed}.csv')
+        df_save_temp = pd.DataFrame(columns=['obs', 'pred', 'basin_id'])
+        df_save_temp['obs'] = y_obs.ravel()
+        df_save_temp['pred'] = y_pred.ravel()
+        df_save_temp['basin_id'] = ii
+        df_save = pd.concat([df_save, df_save_temp], axis=0)
+        df_save.to_csv(f'LSTM421_rf_Pred_random_{seed}.csv', index=False)

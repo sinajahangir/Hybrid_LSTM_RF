@@ -16,3 +16,7 @@
 The TF sample codes are provided to show the end-to-end model development pipeline and prediction using TF. Below is an example of the results that were obtained associated with CAMELS-DE.
 
 <img width="659" alt="image" src="https://github.com/user-attachments/assets/e681f6e8-ae8d-48b6-a57b-bd945a81a573" />
+
+## Sample Results
+
+The sample results provided are associated with Scenario 2, fine-tuning epoch 1 and 3.

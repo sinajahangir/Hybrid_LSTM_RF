@@ -20,3 +20,7 @@ The TF sample codes are provided to show the end-to-end model development pipeli
 ## Sample Results
 
 The sample results provided are associated with Scenario 2, fine-tuning epoch 1 and 3.
+
+## Checpoint
+
+The LSTM (256, dropout, linear head) weights is provided. The weights is associated with epoch 3 (see scenario 2 in the paper, Hybrid-421 and LSTM-421). 
